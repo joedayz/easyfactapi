@@ -11,7 +11,7 @@ spring:
     port: 587
     sender: campus@joedayz.pe
     username: apikey
-    password: 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
+    password: paswordkey
     fromIP: campus.joedayz.pe
 
   dataSource:
