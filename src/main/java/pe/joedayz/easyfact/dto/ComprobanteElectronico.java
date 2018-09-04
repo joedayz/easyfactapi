@@ -45,7 +45,10 @@ public class ComprobanteElectronico implements Serializable {
 
 	private String clieNombre;
 
-	private String docuFecha;
+
+	@JsonSerialize(using=JsonDateSimpleSerializer.class)
+	@JsonDeserialize(using=JsonDateSimpleDeserializer.class)
+	private Date docuFecha;
 
 	private String docuTipodocumento;
 
@@ -273,15 +276,16 @@ public class ComprobanteElectronico implements Serializable {
 		this.clieNombre = clieNombre;
 	}
 
-	public String getDocuFecha() {
-		return docuFecha;
-	}
 
-	public void setDocuFecha(String docuFecha) {
-		this.docuFecha = docuFecha;
-	}
+    public Date getDocuFecha() {
+        return docuFecha;
+    }
 
-	public String getDocuTipodocumento() {
+    public void setDocuFecha(Date docuFecha) {
+        this.docuFecha = docuFecha;
+    }
+
+    public String getDocuTipodocumento() {
 		return docuTipodocumento;
 	}
 

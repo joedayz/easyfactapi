@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/easyfactapi.iml" filepath="$PROJECT_DIR$/easyfactapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyfactapi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/easyfactapi_main.iml" group="easyfactapi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyfactapi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/easyfactapi_test.iml" group="easyfactapi" />
     </modules>
   </component>
 </project>

@@ -29,7 +29,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-hateoas')
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-mail')
-	//compile('org.springframework.boot:spring-boot-starter-security')
+
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('mysql:mysql-connector-java')

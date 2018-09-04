@@ -3,25 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.joedayz.perufact.domain;
+package pe.joedayz.easyfact.domain.model.entities;
 
+import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -31,7 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name = "cabecera")
 @NamedQueries({
     @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c")})
-public class Cabecera implements Serializable {
+public class Cabecera extends AuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

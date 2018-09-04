@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.joedayz.perufact.domain;
+package pe.joedayz.easyfact.domain.model.entities;
 
+import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
+
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
@@ -26,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "leyenda")
 @NamedQueries({
     @NamedQuery(name = "Leyenda.findAll", query = "SELECT l FROM Leyenda l")})
-public class Leyenda implements Serializable {
+public class Leyenda extends AuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

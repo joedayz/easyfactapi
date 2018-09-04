@@ -1,0 +1,56 @@
+server:
+  port: ${vcap.application.port:8999}
+
+---
+
+spring:
+  profiles: default
+
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    sender: campus@joedayz.pe
+    username: apikey
+    password: paswordkey
+    fromIP: campus.joedayz.pe
+
+  dataSource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/facturaelectronica
+    username: root
+    password: joedayz   
+    testOnBorrow: true
+    removeAbandonedTimeout: 1800
+    removeAbandoned: true
+    validationQuery: select 1
+    #validationQuery:  select sysdate from dual
+    logAbandoned: true
+    minEvictableIdleTimeMillis: 60000
+    defaultReadOnly: false
+    maxWait: 60000
+    maxIdle: 1
+    minIdle: 0
+    maxActive: 50
+    initialSize: 1
+    test-on-connect: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
+
+
+
+    properties:
+      hibernate:
+          order_inserts: true
+          order_updates: true
+          ejb:
+            interceptor: pe.joedayz.easyfact.jpa.EasyFactEntityInterceptorImpl
+          jdbc:
+            batch_size: 400
+            batch_versioned_data: true
+
+multipart.maxFileSize: 20MB
+multipart.maxRequestSize: 20MB

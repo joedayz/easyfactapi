@@ -55,8 +55,10 @@ public class ConsultaComprobanteElectronicoJdbcRepository {
 		sql.append(params.filter(" AND empr_nroruc =  :empr_nroruc ", dto.getRuc()));
 		sql.append(params.filter(" AND docu_tipodocumento = :docu_tipodocumento ", dto.getTipoDocumento()));
 		sql.append(params.filter(" AND UPPER(empr_razonsocial) LIKE UPPER('%' + :value + '%') ", dto.getRazonSocial()));
-		//sql.append(params.filter(" AND (docu_fecha <= :value ", dto.getFechaDesde()));
-		//sql.append(params.filter(" AND docu_fecha <= :value )", dto.getFechaHasta()));
+		if(dto.getFechaDesde()!=null)
+			sql.append(params.filterDate(" AND (docu_fecha >= :fechaDesde ", dto.getFechaDesde()));
+		if(dto.getFechaHasta()!=null)
+			sql.append(params.filterDate(" AND docu_fecha <= :fechaHasta )", dto.getFechaHasta()));
 		 
 		return sql.toString();
 	}
