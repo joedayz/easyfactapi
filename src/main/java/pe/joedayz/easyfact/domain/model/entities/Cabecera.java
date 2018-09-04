@@ -1,4 +1,9 @@
-package pe.joedayz.easyfact.domain.model.entities;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pe.joedayz.perufact.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,8 +23,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
-
 /**
  *
  * @author josediaz
@@ -27,75 +30,8 @@ import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
 @Entity
 @Table(name = "cabecera")
 @NamedQueries({
-    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c"),
-    @NamedQuery(name = "Cabecera.findByDocuCodigo", query = "SELECT c FROM Cabecera c WHERE c.docuCodigo = :docuCodigo"),
-    @NamedQuery(name = "Cabecera.findByIdExterno", query = "SELECT c FROM Cabecera c WHERE c.idExterno = :idExterno"),
-    @NamedQuery(name = "Cabecera.findByEmprRazonsocial", query = "SELECT c FROM Cabecera c WHERE c.emprRazonsocial = :emprRazonsocial"),
-    @NamedQuery(name = "Cabecera.findByEmprUbigeo", query = "SELECT c FROM Cabecera c WHERE c.emprUbigeo = :emprUbigeo"),
-    @NamedQuery(name = "Cabecera.findByEmprNombrecomercial", query = "SELECT c FROM Cabecera c WHERE c.emprNombrecomercial = :emprNombrecomercial"),
-    @NamedQuery(name = "Cabecera.findByEmprDireccion", query = "SELECT c FROM Cabecera c WHERE c.emprDireccion = :emprDireccion"),
-    @NamedQuery(name = "Cabecera.findByEmprProvincia", query = "SELECT c FROM Cabecera c WHERE c.emprProvincia = :emprProvincia"),
-    @NamedQuery(name = "Cabecera.findByEmprDepartamento", query = "SELECT c FROM Cabecera c WHERE c.emprDepartamento = :emprDepartamento"),
-    @NamedQuery(name = "Cabecera.findByEmprDistrito", query = "SELECT c FROM Cabecera c WHERE c.emprDistrito = :emprDistrito"),
-    @NamedQuery(name = "Cabecera.findByEmprPais", query = "SELECT c FROM Cabecera c WHERE c.emprPais = :emprPais"),
-    @NamedQuery(name = "Cabecera.findByEmprNroruc", query = "SELECT c FROM Cabecera c WHERE c.emprNroruc = :emprNroruc"),
-    @NamedQuery(name = "Cabecera.findByEmprTipodoc", query = "SELECT c FROM Cabecera c WHERE c.emprTipodoc = :emprTipodoc"),
-    @NamedQuery(name = "Cabecera.findByClieNumero", query = "SELECT c FROM Cabecera c WHERE c.clieNumero = :clieNumero"),
-    @NamedQuery(name = "Cabecera.findByClieTipodoc", query = "SELECT c FROM Cabecera c WHERE c.clieTipodoc = :clieTipodoc"),
-    @NamedQuery(name = "Cabecera.findByClieNombre", query = "SELECT c FROM Cabecera c WHERE c.clieNombre = :clieNombre"),
-    @NamedQuery(name = "Cabecera.findByDocuFecha", query = "SELECT c FROM Cabecera c WHERE c.docuFecha = :docuFecha"),
-    @NamedQuery(name = "Cabecera.findByDocuTipodocumento", query = "SELECT c FROM Cabecera c WHERE c.docuTipodocumento = :docuTipodocumento"),
-    @NamedQuery(name = "Cabecera.findByDocuNumero", query = "SELECT c FROM Cabecera c WHERE c.docuNumero = :docuNumero"),
-    @NamedQuery(name = "Cabecera.findByDocuMoneda", query = "SELECT c FROM Cabecera c WHERE c.docuMoneda = :docuMoneda"),
-    @NamedQuery(name = "Cabecera.findByDocuGravada", query = "SELECT c FROM Cabecera c WHERE c.docuGravada = :docuGravada"),
-    @NamedQuery(name = "Cabecera.findByDocuInafecta", query = "SELECT c FROM Cabecera c WHERE c.docuInafecta = :docuInafecta"),
-    @NamedQuery(name = "Cabecera.findByDocuExonerada", query = "SELECT c FROM Cabecera c WHERE c.docuExonerada = :docuExonerada"),
-    @NamedQuery(name = "Cabecera.findByDocuGratuita", query = "SELECT c FROM Cabecera c WHERE c.docuGratuita = :docuGratuita"),
-    @NamedQuery(name = "Cabecera.findByDocuDescuento", query = "SELECT c FROM Cabecera c WHERE c.docuDescuento = :docuDescuento"),
-    @NamedQuery(name = "Cabecera.findByDocuSubtotal", query = "SELECT c FROM Cabecera c WHERE c.docuSubtotal = :docuSubtotal"),
-    @NamedQuery(name = "Cabecera.findByDocuTotal", query = "SELECT c FROM Cabecera c WHERE c.docuTotal = :docuTotal"),
-    @NamedQuery(name = "Cabecera.findByDocuIgv", query = "SELECT c FROM Cabecera c WHERE c.docuIgv = :docuIgv"),
-    @NamedQuery(name = "Cabecera.findByTasaIgv", query = "SELECT c FROM Cabecera c WHERE c.tasaIgv = :tasaIgv"),
-    @NamedQuery(name = "Cabecera.findByDocuIsc", query = "SELECT c FROM Cabecera c WHERE c.docuIsc = :docuIsc"),
-    @NamedQuery(name = "Cabecera.findByTasaIsc", query = "SELECT c FROM Cabecera c WHERE c.tasaIsc = :tasaIsc"),
-    @NamedQuery(name = "Cabecera.findByDocuOtrostributos", query = "SELECT c FROM Cabecera c WHERE c.docuOtrostributos = :docuOtrostributos"),
-    @NamedQuery(name = "Cabecera.findByTasaOtrostributos", query = "SELECT c FROM Cabecera c WHERE c.tasaOtrostributos = :tasaOtrostributos"),
-    @NamedQuery(name = "Cabecera.findByReteRegi", query = "SELECT c FROM Cabecera c WHERE c.reteRegi = :reteRegi"),
-    @NamedQuery(name = "Cabecera.findByReteTasa", query = "SELECT c FROM Cabecera c WHERE c.reteTasa = :reteTasa"),
-    @NamedQuery(name = "Cabecera.findByReteTotalElec", query = "SELECT c FROM Cabecera c WHERE c.reteTotalElec = :reteTotalElec"),
-    @NamedQuery(name = "Cabecera.findByReteTotalRete", query = "SELECT c FROM Cabecera c WHERE c.reteTotalRete = :reteTotalRete"),
-    @NamedQuery(name = "Cabecera.findByDocuOtroscargos", query = "SELECT c FROM Cabecera c WHERE c.docuOtroscargos = :docuOtroscargos"),
-    @NamedQuery(name = "Cabecera.findByDocuPercepcion", query = "SELECT c FROM Cabecera c WHERE c.docuPercepcion = :docuPercepcion"),
-    @NamedQuery(name = "Cabecera.findByNotaMotivo", query = "SELECT c FROM Cabecera c WHERE c.notaMotivo = :notaMotivo"),
-    @NamedQuery(name = "Cabecera.findByNotaSustento", query = "SELECT c FROM Cabecera c WHERE c.notaSustento = :notaSustento"),
-    @NamedQuery(name = "Cabecera.findByNotaTipodoc", query = "SELECT c FROM Cabecera c WHERE c.notaTipodoc = :notaTipodoc"),
-    @NamedQuery(name = "Cabecera.findByNotaDocumento", query = "SELECT c FROM Cabecera c WHERE c.notaDocumento = :notaDocumento"),
-    @NamedQuery(name = "Cabecera.findByHashcode", query = "SELECT c FROM Cabecera c WHERE c.hashcode = :hashcode"),
-    @NamedQuery(name = "Cabecera.findByCdr", query = "SELECT c FROM Cabecera c WHERE c.cdr = :cdr"),
-    @NamedQuery(name = "Cabecera.findByCdrNota", query = "SELECT c FROM Cabecera c WHERE c.cdrNota = :cdrNota"),
-    @NamedQuery(name = "Cabecera.findByDocuEnviaws", query = "SELECT c FROM Cabecera c WHERE c.docuEnviaws = :docuEnviaws"),
-    @NamedQuery(name = "Cabecera.findByDocuProceStatus", query = "SELECT c FROM Cabecera c WHERE c.docuProceStatus = :docuProceStatus"),
-    @NamedQuery(name = "Cabecera.findByDocuProceFecha", query = "SELECT c FROM Cabecera c WHERE c.docuProceFecha = :docuProceFecha"),
-    @NamedQuery(name = "Cabecera.findByDocuLinkPdf", query = "SELECT c FROM Cabecera c WHERE c.docuLinkPdf = :docuLinkPdf"),
-    @NamedQuery(name = "Cabecera.findByDocuLinkCdr", query = "SELECT c FROM Cabecera c WHERE c.docuLinkCdr = :docuLinkCdr"),
-    @NamedQuery(name = "Cabecera.findByDocuLinkXml", query = "SELECT c FROM Cabecera c WHERE c.docuLinkXml = :docuLinkXml"),
-    @NamedQuery(name = "Cabecera.findByDocuFormaPago", query = "SELECT c FROM Cabecera c WHERE c.docuFormaPago = :docuFormaPago"),
-    @NamedQuery(name = "Cabecera.findByDocuObservacion", query = "SELECT c FROM Cabecera c WHERE c.docuObservacion = :docuObservacion"),
-    @NamedQuery(name = "Cabecera.findByClieDireccion", query = "SELECT c FROM Cabecera c WHERE c.clieDireccion = :clieDireccion"),
-    @NamedQuery(name = "Cabecera.findByDocuVendedor", query = "SELECT c FROM Cabecera c WHERE c.docuVendedor = :docuVendedor"),
-    @NamedQuery(name = "Cabecera.findByDocuPedido", query = "SELECT c FROM Cabecera c WHERE c.docuPedido = :docuPedido"),
-    @NamedQuery(name = "Cabecera.findByDocuGuiaRemision", query = "SELECT c FROM Cabecera c WHERE c.docuGuiaRemision = :docuGuiaRemision"),
-    @NamedQuery(name = "Cabecera.findByClieOrdenCompra", query = "SELECT c FROM Cabecera c WHERE c.clieOrdenCompra = :clieOrdenCompra"),
-    @NamedQuery(name = "Cabecera.findByClieCorreoCpe1", query = "SELECT c FROM Cabecera c WHERE c.clieCorreoCpe1 = :clieCorreoCpe1"),
-    @NamedQuery(name = "Cabecera.findByClieCorreoCpe2", query = "SELECT c FROM Cabecera c WHERE c.clieCorreoCpe2 = :clieCorreoCpe2"),
-    @NamedQuery(name = "Cabecera.findByClieCorreoCpe0", query = "SELECT c FROM Cabecera c WHERE c.clieCorreoCpe0 = :clieCorreoCpe0"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaA", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaA = :docuLeyendaA"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaB", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaB = :docuLeyendaB"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaC", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaC = :docuLeyendaC"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaD", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaD = :docuLeyendaD"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaE", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaE = :docuLeyendaE"),
-    @NamedQuery(name = "Cabecera.findByDocuLeyendaF", query = "SELECT c FROM Cabecera c WHERE c.docuLeyendaF = :docuLeyendaF")})
-public class Cabecera extends AuditingEntity implements Serializable {
+    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c")})
+public class Cabecera implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -194,6 +130,8 @@ public class Cabecera extends AuditingEntity implements Serializable {
     private String cdr;
     @Column(name = "cdr_nota")
     private String cdrNota;
+    @Column(name = "cdr_observacion")
+    private String cdrObservacion;
     @Column(name = "docu_enviaws")
     private String docuEnviaws;
     @Column(name = "docu_proce_status")
@@ -227,18 +165,53 @@ public class Cabecera extends AuditingEntity implements Serializable {
     private String clieCorreoCpe2;
     @Column(name = "clie_correo_cpe0")
     private String clieCorreoCpe0;
-    @Column(name = "docu_leyenda_a")
-    private String docuLeyendaA;
-    @Column(name = "docu_leyenda_b")
-    private String docuLeyendaB;
-    @Column(name = "docu_leyenda_c")
-    private String docuLeyendaC;
-    @Column(name = "docu_leyenda_d")
-    private String docuLeyendaD;
-    @Column(name = "docu_leyenda_e")
-    private String docuLeyendaE;
-    @Column(name = "docu_leyenda_f")
-    private String docuLeyendaF;
+    @Column(name = "docu_tipo_operacion")
+    private String docuTipoOperacion;
+    @Column(name = "docu_anticipo_total")
+    private String docuAnticipoTotal;
+    @Column(name = "empr_direccion_suc")
+    private String emprDireccionSuc;
+    @Column(name = "empr_ubigeo_suc")
+    private String emprUbigeoSuc;
+    @Column(name = "empr_departamento_suc")
+    private String emprDepartamentoSuc;
+    @Column(name = "empr_provincia_suc")
+    private String emprProvinciaSuc;
+    @Column(name = "empr_distrito_suc")
+    private String emprDistritoSuc;
+    @Column(name = "resu_fecha_generacion")
+    private String resuFechaGeneracion;
+    @Column(name = "resu_identificador")
+    private String resuIdentificador;
+    @Column(name = "resu_fila")
+    private String resuFila;
+    @Column(name = "resu_version")
+    private String resuVersion;
+    @Column(name = "resu_estado")
+    private String resuEstado;
+    @Column(name = "item_estado")
+    private String itemEstado;
+    @Column(name = "flg_xml")
+    private String flgXml;
+    @Column(name = "flg_pdf")
+    private String flgPdf;
+    @Column(name = "flg_ftp")
+    private String flgFtp;
+    @Column(name = "flg_sunat")
+    private String flgSunat;
+    @Column(name = "flg_email")
+    private String flgEmail;
+    @Column(name = "resu_fecha_generacion_baja")
+    private String resuFechaGeneracionBaja;
+    @Column(name = "resu_identificador_baja")
+    private String resuIdentificadorBaja;
+    @Column(name = "resu_fila_baja")
+    private String resuFilaBaja;
+    @Column(name = "item_estado_baja")
+    private String itemEstadoBaja;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "docuCodigo")
+    private List<Leyenda> leyendaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "docuCodigo")
     private List<Detalle> detalleList;
 
@@ -617,6 +590,14 @@ public class Cabecera extends AuditingEntity implements Serializable {
         this.cdrNota = cdrNota;
     }
 
+    public String getCdrObservacion() {
+        return cdrObservacion;
+    }
+
+    public void setCdrObservacion(String cdrObservacion) {
+        this.cdrObservacion = cdrObservacion;
+    }
+
     public String getDocuEnviaws() {
         return docuEnviaws;
     }
@@ -745,52 +726,190 @@ public class Cabecera extends AuditingEntity implements Serializable {
         this.clieCorreoCpe0 = clieCorreoCpe0;
     }
 
-    public String getDocuLeyendaA() {
-        return docuLeyendaA;
+    public String getDocuTipoOperacion() {
+        return docuTipoOperacion;
     }
 
-    public void setDocuLeyendaA(String docuLeyendaA) {
-        this.docuLeyendaA = docuLeyendaA;
+    public void setDocuTipoOperacion(String docuTipoOperacion) {
+        this.docuTipoOperacion = docuTipoOperacion;
     }
 
-    public String getDocuLeyendaB() {
-        return docuLeyendaB;
+    public String getDocuAnticipoTotal() {
+        return docuAnticipoTotal;
     }
 
-    public void setDocuLeyendaB(String docuLeyendaB) {
-        this.docuLeyendaB = docuLeyendaB;
+    public void setDocuAnticipoTotal(String docuAnticipoTotal) {
+        this.docuAnticipoTotal = docuAnticipoTotal;
     }
 
-    public String getDocuLeyendaC() {
-        return docuLeyendaC;
+    public String getEmprDireccionSuc() {
+        return emprDireccionSuc;
     }
 
-    public void setDocuLeyendaC(String docuLeyendaC) {
-        this.docuLeyendaC = docuLeyendaC;
+    public void setEmprDireccionSuc(String emprDireccionSuc) {
+        this.emprDireccionSuc = emprDireccionSuc;
     }
 
-    public String getDocuLeyendaD() {
-        return docuLeyendaD;
+    public String getEmprUbigeoSuc() {
+        return emprUbigeoSuc;
     }
 
-    public void setDocuLeyendaD(String docuLeyendaD) {
-        this.docuLeyendaD = docuLeyendaD;
+    public void setEmprUbigeoSuc(String emprUbigeoSuc) {
+        this.emprUbigeoSuc = emprUbigeoSuc;
     }
 
-    public String getDocuLeyendaE() {
-        return docuLeyendaE;
+    public String getEmprDepartamentoSuc() {
+        return emprDepartamentoSuc;
     }
 
-    public void setDocuLeyendaE(String docuLeyendaE) {
-        this.docuLeyendaE = docuLeyendaE;
+    public void setEmprDepartamentoSuc(String emprDepartamentoSuc) {
+        this.emprDepartamentoSuc = emprDepartamentoSuc;
     }
 
-    public String getDocuLeyendaF() {
-        return docuLeyendaF;
+    public String getEmprProvinciaSuc() {
+        return emprProvinciaSuc;
     }
 
-    public void setDocuLeyendaF(String docuLeyendaF) {
-        this.docuLeyendaF = docuLeyendaF;
+    public void setEmprProvinciaSuc(String emprProvinciaSuc) {
+        this.emprProvinciaSuc = emprProvinciaSuc;
+    }
+
+    public String getEmprDistritoSuc() {
+        return emprDistritoSuc;
+    }
+
+    public void setEmprDistritoSuc(String emprDistritoSuc) {
+        this.emprDistritoSuc = emprDistritoSuc;
+    }
+
+    public String getResuFechaGeneracion() {
+        return resuFechaGeneracion;
+    }
+
+    public void setResuFechaGeneracion(String resuFechaGeneracion) {
+        this.resuFechaGeneracion = resuFechaGeneracion;
+    }
+
+    public String getResuIdentificador() {
+        return resuIdentificador;
+    }
+
+    public void setResuIdentificador(String resuIdentificador) {
+        this.resuIdentificador = resuIdentificador;
+    }
+
+    public String getResuFila() {
+        return resuFila;
+    }
+
+    public void setResuFila(String resuFila) {
+        this.resuFila = resuFila;
+    }
+
+    public String getResuVersion() {
+        return resuVersion;
+    }
+
+    public void setResuVersion(String resuVersion) {
+        this.resuVersion = resuVersion;
+    }
+
+    public String getResuEstado() {
+        return resuEstado;
+    }
+
+    public void setResuEstado(String resuEstado) {
+        this.resuEstado = resuEstado;
+    }
+
+    public String getItemEstado() {
+        return itemEstado;
+    }
+
+    public void setItemEstado(String itemEstado) {
+        this.itemEstado = itemEstado;
+    }
+
+    public String getFlgXml() {
+        return flgXml;
+    }
+
+    public void setFlgXml(String flgXml) {
+        this.flgXml = flgXml;
+    }
+
+    public String getFlgPdf() {
+        return flgPdf;
+    }
+
+    public void setFlgPdf(String flgPdf) {
+        this.flgPdf = flgPdf;
+    }
+
+    public String getFlgFtp() {
+        return flgFtp;
+    }
+
+    public void setFlgFtp(String flgFtp) {
+        this.flgFtp = flgFtp;
+    }
+
+    public String getFlgSunat() {
+        return flgSunat;
+    }
+
+    public void setFlgSunat(String flgSunat) {
+        this.flgSunat = flgSunat;
+    }
+
+    public String getFlgEmail() {
+        return flgEmail;
+    }
+
+    public void setFlgEmail(String flgEmail) {
+        this.flgEmail = flgEmail;
+    }
+
+    public String getResuFechaGeneracionBaja() {
+        return resuFechaGeneracionBaja;
+    }
+
+    public void setResuFechaGeneracionBaja(String resuFechaGeneracionBaja) {
+        this.resuFechaGeneracionBaja = resuFechaGeneracionBaja;
+    }
+
+    public String getResuIdentificadorBaja() {
+        return resuIdentificadorBaja;
+    }
+
+    public void setResuIdentificadorBaja(String resuIdentificadorBaja) {
+        this.resuIdentificadorBaja = resuIdentificadorBaja;
+    }
+
+    public String getResuFilaBaja() {
+        return resuFilaBaja;
+    }
+
+    public void setResuFilaBaja(String resuFilaBaja) {
+        this.resuFilaBaja = resuFilaBaja;
+    }
+
+    public String getItemEstadoBaja() {
+        return itemEstadoBaja;
+    }
+
+    public void setItemEstadoBaja(String itemEstadoBaja) {
+        this.itemEstadoBaja = itemEstadoBaja;
+    }
+
+
+
+    public List<Leyenda> getLeyendaList() {
+        return leyendaList;
+    }
+
+    public void setLeyendaList(List<Leyenda> leyendaList) {
+        this.leyendaList = leyendaList;
     }
 
     public List<Detalle> getDetalleList() {
@@ -823,7 +942,7 @@ public class Cabecera extends AuditingEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "javaapplication2.Cabecera[ docuCodigo=" + docuCodigo + " ]";
+        return "pe.joedayz.perufact.Cabecera[ docuCodigo=" + docuCodigo + " ]";
     }
     
 }

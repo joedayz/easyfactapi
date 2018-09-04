@@ -1,9 +1,12 @@
-package pe.joedayz.easyfact.domain.model.entities;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pe.joedayz.perufact.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
 
 /**
  *
@@ -24,39 +24,8 @@ import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
  */
 @Entity
 @Table(name = "detalle")
-@NamedQueries({
-    @NamedQuery(name = "Detalle.findAll", query = "SELECT d FROM Detalle d"),
-    @NamedQuery(name = "Detalle.findByIddetalle", query = "SELECT d FROM Detalle d WHERE d.iddetalle = :iddetalle"),
-    @NamedQuery(name = "Detalle.findByIdExterno", query = "SELECT d FROM Detalle d WHERE d.idExterno = :idExterno"),
-    @NamedQuery(name = "Detalle.findByDocuMoneda", query = "SELECT d FROM Detalle d WHERE d.docuMoneda = :docuMoneda"),
-    @NamedQuery(name = "Detalle.findByItemMoneda", query = "SELECT d FROM Detalle d WHERE d.itemMoneda = :itemMoneda"),
-    @NamedQuery(name = "Detalle.findByItemOrden", query = "SELECT d FROM Detalle d WHERE d.itemOrden = :itemOrden"),
-    @NamedQuery(name = "Detalle.findByItemUnidad", query = "SELECT d FROM Detalle d WHERE d.itemUnidad = :itemUnidad"),
-    @NamedQuery(name = "Detalle.findByItemCantidad", query = "SELECT d FROM Detalle d WHERE d.itemCantidad = :itemCantidad"),
-    @NamedQuery(name = "Detalle.findByItemCodproducto", query = "SELECT d FROM Detalle d WHERE d.itemCodproducto = :itemCodproducto"),
-    @NamedQuery(name = "Detalle.findByItemDescripcion", query = "SELECT d FROM Detalle d WHERE d.itemDescripcion = :itemDescripcion"),
-    @NamedQuery(name = "Detalle.findByItemAfectacion", query = "SELECT d FROM Detalle d WHERE d.itemAfectacion = :itemAfectacion"),
-    @NamedQuery(name = "Detalle.findByItemPventa", query = "SELECT d FROM Detalle d WHERE d.itemPventa = :itemPventa"),
-    @NamedQuery(name = "Detalle.findByItemPventaNohonerosa", query = "SELECT d FROM Detalle d WHERE d.itemPventaNohonerosa = :itemPventaNohonerosa"),
-    @NamedQuery(name = "Detalle.findByItemTiSubtotal", query = "SELECT d FROM Detalle d WHERE d.itemTiSubtotal = :itemTiSubtotal"),
-    @NamedQuery(name = "Detalle.findByItemTiIgv", query = "SELECT d FROM Detalle d WHERE d.itemTiIgv = :itemTiIgv"),
-    @NamedQuery(name = "Detalle.findByReteRelaTipoDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoDocu = :reteRelaTipoDocu"),
-    @NamedQuery(name = "Detalle.findByReteRelaNumeDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaNumeDocu = :reteRelaNumeDocu"),
-    @NamedQuery(name = "Detalle.findByReteRelaFechDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaFechDocu = :reteRelaFechDocu"),
-    @NamedQuery(name = "Detalle.findByReteRelaTipoMoneda", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoMoneda = :reteRelaTipoMoneda"),
-    @NamedQuery(name = "Detalle.findByReteRelaTotalOriginal", query = "SELECT d FROM Detalle d WHERE d.reteRelaTotalOriginal = :reteRelaTotalOriginal"),
-    @NamedQuery(name = "Detalle.findByReteRelaFechaPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaFechaPago = :reteRelaFechaPago"),
-    @NamedQuery(name = "Detalle.findByReteRelaNumeroPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaNumeroPago = :reteRelaNumeroPago"),
-    @NamedQuery(name = "Detalle.findByReteRelaImportePagadoOriginal", query = "SELECT d FROM Detalle d WHERE d.reteRelaImportePagadoOriginal = :reteRelaImportePagadoOriginal"),
-    @NamedQuery(name = "Detalle.findByReteRelaTipoMonedaPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoMonedaPago = :reteRelaTipoMonedaPago"),
-    @NamedQuery(name = "Detalle.findByReteImporteRetenidoNacional", query = "SELECT d FROM Detalle d WHERE d.reteImporteRetenidoNacional = :reteImporteRetenidoNacional"),
-    @NamedQuery(name = "Detalle.findByReteImporteNetoNacional", query = "SELECT d FROM Detalle d WHERE d.reteImporteNetoNacional = :reteImporteNetoNacional"),
-    @NamedQuery(name = "Detalle.findByReteTipoMonedaReferencia", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaReferencia = :reteTipoMonedaReferencia"),
-    @NamedQuery(name = "Detalle.findByReteTipoMonedaObjetivo", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaObjetivo = :reteTipoMonedaObjetivo"),
-    @NamedQuery(name = "Detalle.findByReteTipoMonedaTipoCambio", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaTipoCambio = :reteTipoMonedaTipoCambio"),
-    @NamedQuery(name = "Detalle.findByReteTipoMonedaFecha", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaFecha = :reteTipoMonedaFecha"),
-    @NamedQuery(name = "Detalle.findByItemOtros", query = "SELECT d FROM Detalle d WHERE d.itemOtros = :itemOtros")})
-public class Detalle extends AuditingEntity implements Serializable {
+
+public class Detalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -82,6 +51,8 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String itemDescripcion;
     @Column(name = "item_afectacion")
     private String itemAfectacion;
+    @Column(name = "item_tipo_precio_venta")
+    private String itemTipoPrecioVenta;
     @Column(name = "item_pventa")
     private String itemPventa;
     @Column(name = "item_pventa_nohonerosa")
@@ -90,6 +61,10 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String itemTiSubtotal;
     @Column(name = "item_ti_igv")
     private String itemTiIgv;
+    @Column(name = "item_isc_tier")
+    private String itemIscTier;
+    @Column(name = "item_ti_isc")
+    private String itemTiIsc;
     @Column(name = "rete_rela_tipo_docu")
     private String reteRelaTipoDocu;
     @Column(name = "rete_rela_nume_docu")
@@ -122,11 +97,26 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String reteTipoMonedaFecha;
     @Column(name = "item_otros")
     private String itemOtros;
+    @Column(name = "bultos")
+    private String bultos;
+    @Column(name = "color")
+    private String color;
+    @Column(name = "talla")
+    private String talla;
+    @Column(name = "matiz")
+    private String matiz;
+    @Column(name = "lote")
+    private String lote;
+    @Column(name = "um_cofaco")
+    private String umCofaco;
+    @Column(name = "cantidad_bruta")
+    private String cantidadBruta;
+    @Column(name = "cantidad_neta")
+    private String cantidadNeta;
+
     @JoinColumn(name = "docu_codigo", referencedColumnName = "docu_codigo")
     @ManyToOne(optional = false)
     private Cabecera docuCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iddetalle")
-    private List<DetalleOtro> detalleOtroList;
 
     public Detalle() {
     }
@@ -215,6 +205,14 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.itemAfectacion = itemAfectacion;
     }
 
+    public String getItemTipoPrecioVenta() {
+        return itemTipoPrecioVenta;
+    }
+
+    public void setItemTipoPrecioVenta(String itemTipoPrecioVenta) {
+        this.itemTipoPrecioVenta = itemTipoPrecioVenta;
+    }
+
     public String getItemPventa() {
         return itemPventa;
     }
@@ -245,6 +243,22 @@ public class Detalle extends AuditingEntity implements Serializable {
 
     public void setItemTiIgv(String itemTiIgv) {
         this.itemTiIgv = itemTiIgv;
+    }
+
+    public String getItemIscTier() {
+        return itemIscTier;
+    }
+
+    public void setItemIscTier(String itemIscTier) {
+        this.itemIscTier = itemIscTier;
+    }
+
+    public String getItemTiIsc() {
+        return itemTiIsc;
+    }
+
+    public void setItemTiIsc(String itemTiIsc) {
+        this.itemTiIsc = itemTiIsc;
     }
 
     public String getReteRelaTipoDocu() {
@@ -375,20 +389,79 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.itemOtros = itemOtros;
     }
 
+    public String getBultos() {
+        return bultos;
+    }
+
+    public void setBultos(String bultos) {
+        this.bultos = bultos;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getTalla() {
+        return talla;
+    }
+
+    public void setTalla(String talla) {
+        this.talla = talla;
+    }
+
+    public String getMatiz() {
+        return matiz;
+    }
+
+    public void setMatiz(String matiz) {
+        this.matiz = matiz;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
+
+    public String getUmCofaco() {
+        return umCofaco;
+    }
+
+    public void setUmCofaco(String umCofaco) {
+        this.umCofaco = umCofaco;
+    }
+
+    public String getCantidadBruta() {
+        return cantidadBruta;
+    }
+
+    public void setCantidadBruta(String cantidadBruta) {
+        this.cantidadBruta = cantidadBruta;
+    }
+
+    public String getCantidadNeta() {
+        return cantidadNeta;
+    }
+
+    public void setCantidadNeta(String cantidadNeta) {
+        this.cantidadNeta = cantidadNeta;
+    }
+
+
+
+
     public Cabecera getDocuCodigo() {
         return docuCodigo;
     }
 
     public void setDocuCodigo(Cabecera docuCodigo) {
         this.docuCodigo = docuCodigo;
-    }
-
-    public List<DetalleOtro> getDetalleOtroList() {
-        return detalleOtroList;
-    }
-
-    public void setDetalleOtroList(List<DetalleOtro> detalleOtroList) {
-        this.detalleOtroList = detalleOtroList;
     }
 
     @Override
@@ -413,7 +486,7 @@ public class Detalle extends AuditingEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "javaapplication2.Detalle[ iddetalle=" + iddetalle + " ]";
+        return "pe.joedayz.perufact.Detalle[ iddetalle=" + iddetalle + " ]";
     }
     
 }
