@@ -11,6 +11,7 @@ bin/
 
 # IntelliJ IDEA
 .idea/
+.idea/workspace.xml
 *.iml
 *.iws
 *.ipr
