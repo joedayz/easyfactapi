@@ -5,19 +5,86 @@
  */
 package pe.joedayz.easyfact.domain.model.entities;
 
-import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author josediaz
+ * @author jdiazd
  */
 @Entity
 @Table(name = "detalle")
-
-public class Detalle extends AuditingEntity implements Serializable {
+@XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "Detalle.findAll", query = "SELECT d FROM Detalle d")
+        , @NamedQuery(name = "Detalle.findByIddetalle", query = "SELECT d FROM Detalle d WHERE d.iddetalle = :iddetalle")
+        , @NamedQuery(name = "Detalle.findByIdExterno", query = "SELECT d FROM Detalle d WHERE d.idExterno = :idExterno")
+        , @NamedQuery(name = "Detalle.findByDocuMoneda", query = "SELECT d FROM Detalle d WHERE d.docuMoneda = :docuMoneda")
+        , @NamedQuery(name = "Detalle.findByItemMoneda", query = "SELECT d FROM Detalle d WHERE d.itemMoneda = :itemMoneda")
+        , @NamedQuery(name = "Detalle.findByItemOrden", query = "SELECT d FROM Detalle d WHERE d.itemOrden = :itemOrden")
+        , @NamedQuery(name = "Detalle.findByItemUnidad", query = "SELECT d FROM Detalle d WHERE d.itemUnidad = :itemUnidad")
+        , @NamedQuery(name = "Detalle.findByItemCantidad", query = "SELECT d FROM Detalle d WHERE d.itemCantidad = :itemCantidad")
+        , @NamedQuery(name = "Detalle.findByItemCodproducto", query = "SELECT d FROM Detalle d WHERE d.itemCodproducto = :itemCodproducto")
+        , @NamedQuery(name = "Detalle.findByItemCodproductoSunat", query = "SELECT d FROM Detalle d WHERE d.itemCodproductoSunat = :itemCodproductoSunat")
+        , @NamedQuery(name = "Detalle.findByItemDescripcion", query = "SELECT d FROM Detalle d WHERE d.itemDescripcion = :itemDescripcion")
+        , @NamedQuery(name = "Detalle.findByItemAfectacion", query = "SELECT d FROM Detalle d WHERE d.itemAfectacion = :itemAfectacion")
+        , @NamedQuery(name = "Detalle.findByItemTipoPrecioVenta", query = "SELECT d FROM Detalle d WHERE d.itemTipoPrecioVenta = :itemTipoPrecioVenta")
+        , @NamedQuery(name = "Detalle.findByItemPventa", query = "SELECT d FROM Detalle d WHERE d.itemPventa = :itemPventa")
+        , @NamedQuery(name = "Detalle.findByItempventaIgv", query = "SELECT d FROM Detalle d WHERE d.itempventaIgv = :itempventaIgv")
+        , @NamedQuery(name = "Detalle.findByItemPventaNohonerosa", query = "SELECT d FROM Detalle d WHERE d.itemPventaNohonerosa = :itemPventaNohonerosa")
+        , @NamedQuery(name = "Detalle.findByItemTiSubtotal", query = "SELECT d FROM Detalle d WHERE d.itemTiSubtotal = :itemTiSubtotal")
+        , @NamedQuery(name = "Detalle.findByItemBaseIgv", query = "SELECT d FROM Detalle d WHERE d.itemBaseIgv = :itemBaseIgv")
+        , @NamedQuery(name = "Detalle.findByItemTasaIgv", query = "SELECT d FROM Detalle d WHERE d.itemTasaIgv = :itemTasaIgv")
+        , @NamedQuery(name = "Detalle.findByItemTiIgv", query = "SELECT d FROM Detalle d WHERE d.itemTiIgv = :itemTiIgv")
+        , @NamedQuery(name = "Detalle.findByItemIscTier", query = "SELECT d FROM Detalle d WHERE d.itemIscTier = :itemIscTier")
+        , @NamedQuery(name = "Detalle.findByItemBaseIsc", query = "SELECT d FROM Detalle d WHERE d.itemBaseIsc = :itemBaseIsc")
+        , @NamedQuery(name = "Detalle.findByItemTasaIsc", query = "SELECT d FROM Detalle d WHERE d.itemTasaIsc = :itemTasaIsc")
+        , @NamedQuery(name = "Detalle.findByItemTiIsc", query = "SELECT d FROM Detalle d WHERE d.itemTiIsc = :itemTiIsc")
+        , @NamedQuery(name = "Detalle.findByItemBaseOtrosTrib", query = "SELECT d FROM Detalle d WHERE d.itemBaseOtrosTrib = :itemBaseOtrosTrib")
+        , @NamedQuery(name = "Detalle.findByItemTasaOtrosTrib", query = "SELECT d FROM Detalle d WHERE d.itemTasaOtrosTrib = :itemTasaOtrosTrib")
+        , @NamedQuery(name = "Detalle.findByItemTiOtrosTrib", query = "SELECT d FROM Detalle d WHERE d.itemTiOtrosTrib = :itemTiOtrosTrib")
+        , @NamedQuery(name = "Detalle.findByItemTotalTax", query = "SELECT d FROM Detalle d WHERE d.itemTotalTax = :itemTotalTax")
+        , @NamedQuery(name = "Detalle.findByItemTributo", query = "SELECT d FROM Detalle d WHERE d.itemTributo = :itemTributo")
+        , @NamedQuery(name = "Detalle.findByReteRelaTipoDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoDocu = :reteRelaTipoDocu")
+        , @NamedQuery(name = "Detalle.findByReteRelaNumeDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaNumeDocu = :reteRelaNumeDocu")
+        , @NamedQuery(name = "Detalle.findByReteRelaFechDocu", query = "SELECT d FROM Detalle d WHERE d.reteRelaFechDocu = :reteRelaFechDocu")
+        , @NamedQuery(name = "Detalle.findByReteRelaTipoMoneda", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoMoneda = :reteRelaTipoMoneda")
+        , @NamedQuery(name = "Detalle.findByReteRelaTotalOriginal", query = "SELECT d FROM Detalle d WHERE d.reteRelaTotalOriginal = :reteRelaTotalOriginal")
+        , @NamedQuery(name = "Detalle.findByReteRelaFechaPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaFechaPago = :reteRelaFechaPago")
+        , @NamedQuery(name = "Detalle.findByReteRelaNumeroPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaNumeroPago = :reteRelaNumeroPago")
+        , @NamedQuery(name = "Detalle.findByReteRelaImportePagadoOriginal", query = "SELECT d FROM Detalle d WHERE d.reteRelaImportePagadoOriginal = :reteRelaImportePagadoOriginal")
+        , @NamedQuery(name = "Detalle.findByReteRelaTipoMonedaPago", query = "SELECT d FROM Detalle d WHERE d.reteRelaTipoMonedaPago = :reteRelaTipoMonedaPago")
+        , @NamedQuery(name = "Detalle.findByReteImporteRetenidoNacional", query = "SELECT d FROM Detalle d WHERE d.reteImporteRetenidoNacional = :reteImporteRetenidoNacional")
+        , @NamedQuery(name = "Detalle.findByReteImporteNetoNacional", query = "SELECT d FROM Detalle d WHERE d.reteImporteNetoNacional = :reteImporteNetoNacional")
+        , @NamedQuery(name = "Detalle.findByReteTipoMonedaReferencia", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaReferencia = :reteTipoMonedaReferencia")
+        , @NamedQuery(name = "Detalle.findByReteTipoMonedaObjetivo", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaObjetivo = :reteTipoMonedaObjetivo")
+        , @NamedQuery(name = "Detalle.findByReteTipoMonedaTipoCambio", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaTipoCambio = :reteTipoMonedaTipoCambio")
+        , @NamedQuery(name = "Detalle.findByReteTipoMonedaFecha", query = "SELECT d FROM Detalle d WHERE d.reteTipoMonedaFecha = :reteTipoMonedaFecha")
+        , @NamedQuery(name = "Detalle.findByItemOtros", query = "SELECT d FROM Detalle d WHERE d.itemOtros = :itemOtros")
+        , @NamedQuery(name = "Detalle.findByBultos", query = "SELECT d FROM Detalle d WHERE d.bultos = :bultos")
+        , @NamedQuery(name = "Detalle.findByColor", query = "SELECT d FROM Detalle d WHERE d.color = :color")
+        , @NamedQuery(name = "Detalle.findByTalla", query = "SELECT d FROM Detalle d WHERE d.talla = :talla")
+        , @NamedQuery(name = "Detalle.findByMatiz", query = "SELECT d FROM Detalle d WHERE d.matiz = :matiz")
+        , @NamedQuery(name = "Detalle.findByLote", query = "SELECT d FROM Detalle d WHERE d.lote = :lote")
+        , @NamedQuery(name = "Detalle.findByUmCofaco", query = "SELECT d FROM Detalle d WHERE d.umCofaco = :umCofaco")
+        , @NamedQuery(name = "Detalle.findByCantidadBruta", query = "SELECT d FROM Detalle d WHERE d.cantidadBruta = :cantidadBruta")
+        , @NamedQuery(name = "Detalle.findByCantidadNeta", query = "SELECT d FROM Detalle d WHERE d.cantidadNeta = :cantidadNeta")
+        , @NamedQuery(name = "Detalle.findByItemConceptoTribNombre", query = "SELECT d FROM Detalle d WHERE d.itemConceptoTribNombre = :itemConceptoTribNombre")
+        , @NamedQuery(name = "Detalle.findByItemConceptoTribCodigo", query = "SELECT d FROM Detalle d WHERE d.itemConceptoTribCodigo = :itemConceptoTribCodigo")
+        , @NamedQuery(name = "Detalle.findByItemNumeroPlaca", query = "SELECT d FROM Detalle d WHERE d.itemNumeroPlaca = :itemNumeroPlaca")})
+public class Detalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,6 +106,8 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String itemCantidad;
     @Column(name = "item_codproducto")
     private String itemCodproducto;
+    @Column(name = "item_codproducto_sunat")
+    private String itemCodproductoSunat;
     @Column(name = "item_descripcion")
     private String itemDescripcion;
     @Column(name = "item_afectacion")
@@ -47,16 +116,36 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String itemTipoPrecioVenta;
     @Column(name = "item_pventa")
     private String itemPventa;
+    @Column(name = "item_pventaIgv")
+    private String itempventaIgv;
     @Column(name = "item_pventa_nohonerosa")
     private String itemPventaNohonerosa;
     @Column(name = "item_ti_subtotal")
     private String itemTiSubtotal;
+    @Column(name = "item_base_igv")
+    private String itemBaseIgv;
+    @Column(name = "item_tasa_igv")
+    private String itemTasaIgv;
     @Column(name = "item_ti_igv")
     private String itemTiIgv;
     @Column(name = "item_isc_tier")
     private String itemIscTier;
+    @Column(name = "item_base_isc")
+    private String itemBaseIsc;
+    @Column(name = "item_tasa_isc")
+    private String itemTasaIsc;
     @Column(name = "item_ti_isc")
     private String itemTiIsc;
+    @Column(name = "item_base_otros_trib")
+    private String itemBaseOtrosTrib;
+    @Column(name = "item_tasa_otros_trib")
+    private String itemTasaOtrosTrib;
+    @Column(name = "item_ti_otros_trib")
+    private String itemTiOtrosTrib;
+    @Column(name = "item_total_tax")
+    private String itemTotalTax;
+    @Column(name = "item_tributo")
+    private String itemTributo;
     @Column(name = "rete_rela_tipo_docu")
     private String reteRelaTipoDocu;
     @Column(name = "rete_rela_nume_docu")
@@ -105,7 +194,12 @@ public class Detalle extends AuditingEntity implements Serializable {
     private String cantidadBruta;
     @Column(name = "cantidad_neta")
     private String cantidadNeta;
-
+    @Column(name = "item_concepto_trib_nombre")
+    private String itemConceptoTribNombre;
+    @Column(name = "item_concepto_trib_codigo")
+    private String itemConceptoTribCodigo;
+    @Column(name = "item_numero_placa")
+    private String itemNumeroPlaca;
     @JoinColumn(name = "docu_codigo", referencedColumnName = "docu_codigo")
     @ManyToOne(optional = false)
     private Cabecera docuCodigo;
@@ -181,6 +275,14 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.itemCodproducto = itemCodproducto;
     }
 
+    public String getItemCodproductoSunat() {
+        return itemCodproductoSunat;
+    }
+
+    public void setItemCodproductoSunat(String itemCodproductoSunat) {
+        this.itemCodproductoSunat = itemCodproductoSunat;
+    }
+
     public String getItemDescripcion() {
         return itemDescripcion;
     }
@@ -213,6 +315,14 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.itemPventa = itemPventa;
     }
 
+    public String getItempventaIgv() {
+        return itempventaIgv;
+    }
+
+    public void setItempventaIgv(String itempventaIgv) {
+        this.itempventaIgv = itempventaIgv;
+    }
+
     public String getItemPventaNohonerosa() {
         return itemPventaNohonerosa;
     }
@@ -227,6 +337,22 @@ public class Detalle extends AuditingEntity implements Serializable {
 
     public void setItemTiSubtotal(String itemTiSubtotal) {
         this.itemTiSubtotal = itemTiSubtotal;
+    }
+
+    public String getItemBaseIgv() {
+        return itemBaseIgv;
+    }
+
+    public void setItemBaseIgv(String itemBaseIgv) {
+        this.itemBaseIgv = itemBaseIgv;
+    }
+
+    public String getItemTasaIgv() {
+        return itemTasaIgv;
+    }
+
+    public void setItemTasaIgv(String itemTasaIgv) {
+        this.itemTasaIgv = itemTasaIgv;
     }
 
     public String getItemTiIgv() {
@@ -245,12 +371,68 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.itemIscTier = itemIscTier;
     }
 
+    public String getItemBaseIsc() {
+        return itemBaseIsc;
+    }
+
+    public void setItemBaseIsc(String itemBaseIsc) {
+        this.itemBaseIsc = itemBaseIsc;
+    }
+
+    public String getItemTasaIsc() {
+        return itemTasaIsc;
+    }
+
+    public void setItemTasaIsc(String itemTasaIsc) {
+        this.itemTasaIsc = itemTasaIsc;
+    }
+
     public String getItemTiIsc() {
         return itemTiIsc;
     }
 
     public void setItemTiIsc(String itemTiIsc) {
         this.itemTiIsc = itemTiIsc;
+    }
+
+    public String getItemBaseOtrosTrib() {
+        return itemBaseOtrosTrib;
+    }
+
+    public void setItemBaseOtrosTrib(String itemBaseOtrosTrib) {
+        this.itemBaseOtrosTrib = itemBaseOtrosTrib;
+    }
+
+    public String getItemTasaOtrosTrib() {
+        return itemTasaOtrosTrib;
+    }
+
+    public void setItemTasaOtrosTrib(String itemTasaOtrosTrib) {
+        this.itemTasaOtrosTrib = itemTasaOtrosTrib;
+    }
+
+    public String getItemTiOtrosTrib() {
+        return itemTiOtrosTrib;
+    }
+
+    public void setItemTiOtrosTrib(String itemTiOtrosTrib) {
+        this.itemTiOtrosTrib = itemTiOtrosTrib;
+    }
+
+    public String getItemTotalTax() {
+        return itemTotalTax;
+    }
+
+    public void setItemTotalTax(String itemTotalTax) {
+        this.itemTotalTax = itemTotalTax;
+    }
+
+    public String getItemTributo() {
+        return itemTributo;
+    }
+
+    public void setItemTributo(String itemTributo) {
+        this.itemTributo = itemTributo;
     }
 
     public String getReteRelaTipoDocu() {
@@ -445,8 +627,29 @@ public class Detalle extends AuditingEntity implements Serializable {
         this.cantidadNeta = cantidadNeta;
     }
 
+    public String getItemConceptoTribNombre() {
+        return itemConceptoTribNombre;
+    }
 
+    public void setItemConceptoTribNombre(String itemConceptoTribNombre) {
+        this.itemConceptoTribNombre = itemConceptoTribNombre;
+    }
 
+    public String getItemConceptoTribCodigo() {
+        return itemConceptoTribCodigo;
+    }
+
+    public void setItemConceptoTribCodigo(String itemConceptoTribCodigo) {
+        this.itemConceptoTribCodigo = itemConceptoTribCodigo;
+    }
+
+    public String getItemNumeroPlaca() {
+        return itemNumeroPlaca;
+    }
+
+    public void setItemNumeroPlaca(String itemNumeroPlaca) {
+        this.itemNumeroPlaca = itemNumeroPlaca;
+    }
 
     public Cabecera getDocuCodigo() {
         return docuCodigo;
@@ -478,7 +681,63 @@ public class Detalle extends AuditingEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "pe.joedayz.perufact.Detalle[ iddetalle=" + iddetalle + " ]";
+        return "Detalle{" +
+                "iddetalle=" + iddetalle +
+                ", idExterno='" + idExterno + '\'' +
+                ", docuMoneda='" + docuMoneda + '\'' +
+                ", itemMoneda='" + itemMoneda + '\'' +
+                ", itemOrden='" + itemOrden + '\'' +
+                ", itemUnidad='" + itemUnidad + '\'' +
+                ", itemCantidad='" + itemCantidad + '\'' +
+                ", itemCodproducto='" + itemCodproducto + '\'' +
+                ", itemCodproductoSunat='" + itemCodproductoSunat + '\'' +
+                ", itemDescripcion='" + itemDescripcion + '\'' +
+                ", itemAfectacion='" + itemAfectacion + '\'' +
+                ", itemTipoPrecioVenta='" + itemTipoPrecioVenta + '\'' +
+                ", itemPventa='" + itemPventa + '\'' +
+                ", itempventaIgv='" + itempventaIgv + '\'' +
+                ", itemPventaNohonerosa='" + itemPventaNohonerosa + '\'' +
+                ", itemTiSubtotal='" + itemTiSubtotal + '\'' +
+                ", itemBaseIgv='" + itemBaseIgv + '\'' +
+                ", itemTasaIgv='" + itemTasaIgv + '\'' +
+                ", itemTiIgv='" + itemTiIgv + '\'' +
+                ", itemIscTier='" + itemIscTier + '\'' +
+                ", itemBaseIsc='" + itemBaseIsc + '\'' +
+                ", itemTasaIsc='" + itemTasaIsc + '\'' +
+                ", itemTiIsc='" + itemTiIsc + '\'' +
+                ", itemBaseOtrosTrib='" + itemBaseOtrosTrib + '\'' +
+                ", itemTasaOtrosTrib='" + itemTasaOtrosTrib + '\'' +
+                ", itemTiOtrosTrib='" + itemTiOtrosTrib + '\'' +
+                ", itemTotalTax='" + itemTotalTax + '\'' +
+                ", itemTributo='" + itemTributo + '\'' +
+                ", reteRelaTipoDocu='" + reteRelaTipoDocu + '\'' +
+                ", reteRelaNumeDocu='" + reteRelaNumeDocu + '\'' +
+                ", reteRelaFechDocu='" + reteRelaFechDocu + '\'' +
+                ", reteRelaTipoMoneda='" + reteRelaTipoMoneda + '\'' +
+                ", reteRelaTotalOriginal='" + reteRelaTotalOriginal + '\'' +
+                ", reteRelaFechaPago='" + reteRelaFechaPago + '\'' +
+                ", reteRelaNumeroPago='" + reteRelaNumeroPago + '\'' +
+                ", reteRelaImportePagadoOriginal='" + reteRelaImportePagadoOriginal + '\'' +
+                ", reteRelaTipoMonedaPago='" + reteRelaTipoMonedaPago + '\'' +
+                ", reteImporteRetenidoNacional='" + reteImporteRetenidoNacional + '\'' +
+                ", reteImporteNetoNacional='" + reteImporteNetoNacional + '\'' +
+                ", reteTipoMonedaReferencia='" + reteTipoMonedaReferencia + '\'' +
+                ", reteTipoMonedaObjetivo='" + reteTipoMonedaObjetivo + '\'' +
+                ", reteTipoMonedaTipoCambio='" + reteTipoMonedaTipoCambio + '\'' +
+                ", reteTipoMonedaFecha='" + reteTipoMonedaFecha + '\'' +
+                ", itemOtros='" + itemOtros + '\'' +
+                ", bultos='" + bultos + '\'' +
+                ", color='" + color + '\'' +
+                ", talla='" + talla + '\'' +
+                ", matiz='" + matiz + '\'' +
+                ", lote='" + lote + '\'' +
+                ", umCofaco='" + umCofaco + '\'' +
+                ", cantidadBruta='" + cantidadBruta + '\'' +
+                ", cantidadNeta='" + cantidadNeta + '\'' +
+                ", itemConceptoTribNombre='" + itemConceptoTribNombre + '\'' +
+                ", itemConceptoTribCodigo='" + itemConceptoTribCodigo + '\'' +
+                ", itemNumeroPlaca='" + itemNumeroPlaca + '\'' +
+                ", docuCodigo=" + docuCodigo +
+                '}';
     }
-    
 }

@@ -5,20 +5,33 @@
  */
 package pe.joedayz.easyfact.domain.model.entities;
 
-import pe.joedayz.easyfact.domain.model.base.AuditingEntity;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author josediaz
+ * @author jdiazd
  */
 @Entity
 @Table(name = "leyenda")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Leyenda.findAll", query = "SELECT l FROM Leyenda l")})
-public class Leyenda extends AuditingEntity implements Serializable {
+        @NamedQuery(name = "Leyenda.findAll", query = "SELECT l FROM Leyenda l")
+        , @NamedQuery(name = "Leyenda.findByIdLeyenda", query = "SELECT l FROM Leyenda l WHERE l.idLeyenda = :idLeyenda")
+        , @NamedQuery(name = "Leyenda.findByLeyendaCodigo", query = "SELECT l FROM Leyenda l WHERE l.leyendaCodigo = :leyendaCodigo")
+        , @NamedQuery(name = "Leyenda.findByLeyendaTexto", query = "SELECT l FROM Leyenda l WHERE l.leyendaTexto = :leyendaTexto")})
+public class Leyenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -103,7 +116,7 @@ public class Leyenda extends AuditingEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "pe.joedayz.perufact.Leyenda[ idLeyenda=" + idLeyenda + " ]";
+        return "pe.joedayz.kallpa.model.Leyenda[ idLeyenda=" + idLeyenda + " ]";
     }
-    
+
 }

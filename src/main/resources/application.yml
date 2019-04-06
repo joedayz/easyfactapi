@@ -17,8 +17,8 @@ spring:
   dataSource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/facturaelectronica
-    username: root
-    password: joedayz   
+    username: gestionSunat
+    password: certificado123
     testOnBorrow: true
     removeAbandonedTimeout: 1800
     removeAbandoned: true
